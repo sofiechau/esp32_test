@@ -1,26 +1,28 @@
 #include <Arduino.h>
-#include <ESP32Servo.h>
+#include <Keypad.h>
 
-Servo myServo;
-const int servoPin = 13;
-void setup(){
+const byte ROWS = 4;
+const byte COLS = 4;
+
+char keys[ROWS][COLS] = {
+  {'1','2','3','A'},
+  {'4','5','6','B'},
+  {'7','8','9','C'},
+  {'*','0','#','D'}
+};
+
+byte rowPins[ROWS] = {19,18,5,17};
+byte colPins[COLS] = {16,4,2,15};
+
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+void setup() {
   Serial.begin(115200);
-  Serial.println("starging...");
-  myServo.setPeriodHertz(50);
-  myServo.attach(servoPin, 500, 2400);
+  Serial.println("enter password");
+  String password = "1234";
 }
 
-void loop(){
-  Serial.println("moving 0 deg");
-  myServo.write(0);
-  delay(2000);
+void loop() {
+  char key = keypad.getKey();
   
-  Serial.println("moving 90 deg");
-  myServo.write(90);
-  delay(2000);
-
-  Serial.println("moving 180 deg");
-  myServo.write(180);
-  delay(2000);
-}
-
+  
