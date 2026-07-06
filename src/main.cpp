@@ -12,8 +12,8 @@ char keys[ROWS][COLS] = {
   {'*','0','#','D'}
 };
 
-byte rowPins[ROWS] = {19,18,5,17};
-byte colPins[COLS] = {16,4,2,15};
+byte rowPins[ROWS] = {23,22,21,19};
+byte colPins[COLS] = {18,5,4,2};
 String input = "";
 String password = "1234";
 Servo myServo;
@@ -47,5 +47,6 @@ void loop() {
       input = "";
     }
   }
+}
   
   
